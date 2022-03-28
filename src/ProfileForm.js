@@ -12,6 +12,12 @@ import React, { useState } from 'react'
        const {name, value} = e.target;
        setProfile(prevState => ({...profile, [name]:value}))
      };
+
+     const handleSubmit = e => {
+       e.preventDefault();
+       submit(profile);
+     }
+
   return <form>
         <fieldset>
           <legend>Personal Information</legend>
@@ -32,6 +38,9 @@ import React, { useState } from 'react'
           onChange={handleChange}
            value={profile.phone}/>
         </fieldset>
+        <button className='form' onClick={handleSubmit}>
+          Add Writer
+        </button>
   </form>
 }
  export default ProfileForm;
