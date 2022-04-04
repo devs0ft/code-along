@@ -1,30 +1,28 @@
-import useLocalStorage from "./hooks/useLocalStorage";
-import ProfileForm from "./components/ProfileForm";
-import ProfileCard from "./components/ProfileCard";
+import React from "react";
+import { BrowserRouter, Routes,Route } from 'react-router-dom'
+import About from './Pages/About'
+import Blog from "./Pages/Blog";
+import Home from "./Pages/Home";
+import Navbar from "./components/Navbar/Navbar";
 
-function App() {
-  const [profiles, setProfiles] = useLocalStorage("profiles", []);
-
-  const updateProfiles = (profile) => {
-    let arr = profiles;
-    arr.push(profile);
-    setProfiles([...arr]);
-  };
-
+const App = () => {
   return (
-    <div className="app">
-      <h1> Profile Maker </h1>
-      <div>
-        <ProfileForm submit={updateProfiles} />
-        <hr />
-        <div className="list">
-          {profiles.map((person, index) => (
-            <ProfileCard key={index} writer={person} />
-          ))}
-        </div>
-      </div>
-    </div>
-  );
+    <BrowserRouter>
+       <Navbar/>
+     <Routes>
+     <Route path='/home' element ={<Home/>}></Route>
+      <Route path='blog' element ={<Blog/>}></Route>
+      <Route path='about' element ={<About/>}></Route>
+     </Routes>
+    
+    </BrowserRouter>
+  )
 }
 
-export default App;
+export default App
+
+
+
+
+
+
